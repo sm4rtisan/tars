@@ -1,6 +1,8 @@
-frontend_build:
-  image: node:6
-  volumes:
-    - .:/code
-  working_dir: /code
-  command: make frontend
+version: '3'
+services:
+  frontend_build:
+    image: node:6
+    volumes:
+      - .:/code
+    working_dir: /code
+    command: make frontend
