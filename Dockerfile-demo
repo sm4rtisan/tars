@@ -1,10 +1,15 @@
-FROM python:2.7
+#FROM python:2.7
+FROM python:2.7.13
+ENV DEBIAN_FRONTEND noninteractive
 ENV PYTHONUNBUFFERED 1
 ADD requirements /requirements
 
-RUN pip install -r /requirements/local.txt --trusted-host pypi.douban.com
+RUN apt-get update \
+  && apt-get install -y mysql-server --no-install-recommends \
+  && apt-get clean \
+  && pip install -r /requirements/local.txt --trusted-host pypi.douban.com \
+  && mkdir /code
 
-RUN mkdir /code
 WORKDIR /code
 
 COPY demo/files/shared/ssh/id_rsa.pub /root/.ssh/id_rsa.pub
