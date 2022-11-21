@@ -1,6 +1,7 @@
 version: '3'
 services:
   db:
+    container_name: tars-db
     image: mysql:5.7
     ports:
       - "3306:3306"
@@ -12,16 +13,19 @@ services:
       - MYSQL_CHARSET=utf8
 
   backend:
+    container_name: tars-redis
     image: redis
     ports:
       - "6379:6379"
 
   es:
+    container_name: tars-es
     image: elasticsearch:5
     ports:
       - '9200:9200'
 
   worker:
+    container_name: tars-worker
     build: .
     # command: python manage.py celery -A roll_engine worker --autoreload -l info --settings=tars.settings.docker
     command: celery worker -A roll_engine -l info
@@ -36,6 +40,7 @@ services:
       - es
 
   web:
+    container_name: tars-web
     build: .
     command: python manage.py runserver 0.0.0.0:8000 --settings=tars.settings.docker
     volumes:

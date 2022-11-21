@@ -10,15 +10,21 @@ elasticsearch
 
 # tars requirements
 decisionTable
-Django>=1.8,<1.9
-django-constance>=1.2
-django-picklefield
+Django>=1.7,<1.8
+django-constance==1.3.3
+django-picklefield==0.3.2
 django-filter<=0.11.0
 djangorestframework>=3.0.4,<3.1.0
-djangorestframework-camel-case
+djangorestframework-camel-case==0.2.0
 djangorestframework-jsonp
+django-guardian==1.4.6
 MySQL-python
 sqlparse
-redis
+redis==2.10.5
 raven
-kafka-python
+retrying==1.3.3
+futures
+redis-lock
+python-redis-lock==3.6.0
+oyaml
+kafka-python==2.0.1
